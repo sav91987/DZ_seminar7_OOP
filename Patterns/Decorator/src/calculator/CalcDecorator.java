@@ -3,36 +3,35 @@ public class CalcDecorator implements iCalculable {
     private iCalculable oldCalc;
     private Logger logger;
  
+    /**
+     * Конструктор Decorate
+     * 
+     * @param oldCalc - объект класса Calculator
+     * @param logger - объект класса Logger. 
+     */
     public CalcDecorator(iCalculable oldCalc, Logger logger) {
         this.oldCalc = oldCalc;
         this.logger = logger;
     }
 
     @Override
-    public iCalculable sum(int arg) {
-       int firstArg = oldCalc.getResult();
-
-       logger.log(String.format("Первое значение калькулятора %d. Начало вызова метода sum с параметром %d", firstArg, arg));
-       iCalculable result = oldCalc.sum(arg);
-       logger.log(String.format("Вызова метода sum произошел"));
-
-       return result;
+    public void sum(int argA1, int argB1, int argA2, int argB2) {
+        logger.log(String.format("Начало вызова метода sum с параметрами a1=%d, b1=%d, a2=%d, b2=%d", argA1, argB1, argA2, argB2));
+        oldCalc.sum(argA1, argB1, argA2, argB2);
+        logger.log(String.format("Вызов метода sum произошел успешно"));
     }
 
     @Override
-    public iCalculable multi(int arg) {
-       int firstArg = oldCalc.getResult();
-        logger.log(String.format("Первое значение калькулятора %d. Начало вызова метода multi с параметром %d", firstArg, arg));
-        iCalculable result = oldCalc.multi(arg);
-        logger.log(String.format("Вызова метода multi произошел"));
-        return result;
+    public void multi(int argA1, int argB1, int argA2, int argB2) {
+        logger.log(String.format("Начало вызова метода multi с параметрами a1=%d, b1=%d, a2=%d, b2=%d", argA1, argB1, argA2, argB2));
+        oldCalc.multi(argA1, argB1, argA2, argB2);
+        logger.log(String.format("Вызов метода multi произошел успешно"));
     }
 
     @Override
-    public int getResult() {
-        int result = oldCalc.getResult();
-        logger.log(String.format("Получение результата %d", result));
-        return result;
+    public void div(int argA1, int argB1, int argA2, int argB2) {
+        logger.log(String.format("Начало вызова метода div с параметрами a1=%d, b1=%d, a2=%d, b2=%d", argA1, argB1, argA2, argB2));
+        oldCalc.div(argA1, argB1, argA2, argB2);
+        logger.log(String.format("Вызов метода div произошел успешно"));
     }
-    
 }
